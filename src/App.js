@@ -1,23 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
 
+import Urlap from './component/Urlap';
+import './App.css';
+import DataService from './model/DataSevice';
+import { useEffect } from 'react';
+const DS = new DataService()
 function App() {
+
+  function kuld(urlapAdat){
+    console.log(urlapAdat)//ez fogadja az urlap adatokat
+    //itt küldöm az adatokat az adatbázisba
+    //asszinkron híváshoz, useEffect hook-ot kell használni
+    useEffect(()=>{
+      DS.postData(vegpont, urlapAdat) 
+    }, [])
+  }
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h3>Űrlap</h3>
       </header>
+      <article>
+
+        <Urlap kuld={kuld}/>
+      </article>
     </div>
   );
 }
